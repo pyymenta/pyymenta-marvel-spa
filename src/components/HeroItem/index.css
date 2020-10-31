@@ -1,0 +1,17 @@
+.hero-item {
+  width: 25%;
+  height: 25%;
+}
+
+.hero-item__image {
+  border-bottom: 5px solid var(--color-primary);
+}
+
+.hero-item__info-wrapper {
+  color: var(--color-typo-strong);
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
