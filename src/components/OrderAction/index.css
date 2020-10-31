@@ -1,0 +1,12 @@
+.action-wrapper {
+  color: var(--color-typo-primary);
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.action-wrapper span {
+  position: relative;
+  left: 1rem;
+  bottom: 6px;
+}
