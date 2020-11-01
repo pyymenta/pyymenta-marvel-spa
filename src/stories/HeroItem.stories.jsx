@@ -21,5 +21,5 @@ export const Hero = Template.bind({});
 Hero.args = {
   heroName: '3-D Man',
   heroImage: 'http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg',
-  isStarred: false,
+  isFavorite: false,
 };
