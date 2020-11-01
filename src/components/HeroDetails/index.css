@@ -1,0 +1,84 @@
+.hero-details__wrapper {
+  display: flex;
+}
+
+.hero-info {
+  width: 40%;
+  margin: 60px 24px 36px 0;
+}
+
+.hero-info__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero-info__name {
+  color: var(--color-typo-strong);
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.hero-info__description {
+  color: var(--color-typo-medium);
+  line-height: 26px;
+  padding: 24px 0;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.hero-info__text {
+  color: var(--color-typo-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.hero-info__comics-title,
+.hero-info__movies-title {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.hero-info__comics,
+.hero-info__movies {
+  bottom: 4px;
+  margin-left: 16px;
+  position: relative;
+}
+
+.hero-info__rating-wrapper {
+  display: block;
+  margin: 24px 0;
+}
+
+.hero-info__rating-title {
+  position: relative;
+  bottom: 3px;
+  margin-right: 24px;
+}
+
+.hero-info__last-comic-wrapper {
+  display: block;
+}
+
+.hero-info__last-comic-title {
+  margin-right: 24px;
+}
+
+.hero-image {
+  width: 60%;
+  margin-left: 48px;
+}
+
+.character-name-background {
+  color: var(--color-default);
+  display: inline;
+  font-size: 250px;
+  text-transform: uppercase;
+  position: absolute;
+  left: 60%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: -1;
+}
