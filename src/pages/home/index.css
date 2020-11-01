@@ -1,0 +1,59 @@
+.home {
+  width: 100%;
+}
+
+h1,
+h2,
+header {
+  text-align: center;
+}
+
+h1 {
+  color: var(--color-typo-strong);
+  font-size: 36px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+h2 {
+  color: var(--color-typo-medium);
+  font-size: 16px;
+  margin-bottom: 60px;
+}
+
+.searchbar-wrapper {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.actions-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 72px;
+}
+
+.starred-wrapper {
+  display: flex;
+}
+
+.hero-count-wrapper {
+  flex: 1;
+}
+
+.order-action-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex: 2;
+}
+
+.heroes-wrapper {
+  margin: 24px 0 60px 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 24px;
+}
+
+.hero-item-wrapper {
+  width: 23%;
+}
