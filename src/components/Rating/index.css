@@ -1,6 +1,7 @@
 .rating-list {
   display: inline;
   list-style: none;
+  padding: 0;
 }
 
 .rating-item {
