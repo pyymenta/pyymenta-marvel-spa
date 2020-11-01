@@ -3,7 +3,7 @@ import HeroDetails from '../components/HeroDetails';
 import '../styles/index.css';
 
 export default {
-  title: 'Example/HeroDetails',
+  title: 'Components/HeroDetails',
   component: HeroDetails,
 };
 

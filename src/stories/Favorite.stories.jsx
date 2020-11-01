@@ -3,7 +3,7 @@ import Favorite from '../components/Favorite';
 import '../styles/index.css';
 
 export default {
-  title: 'Example/Favorite',
+  title: 'Components/Favorite',
   component: Favorite,
 };
 

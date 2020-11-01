@@ -3,7 +3,7 @@ import OrderAction from '../components/OrderAction';
 import '../styles/index.css';
 
 export default {
-  title: 'Example/OrderAction',
+  title: 'Components/OrderAction',
   component: OrderAction,
 };
 

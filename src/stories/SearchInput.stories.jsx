@@ -3,7 +3,7 @@ import SearchInput from '../components/SearchInput';
 import '../styles/index.css';
 
 export default {
-  title: 'Example/SearchInput',
+  title: 'Components/SearchInput',
   component: SearchInput,
 };
 

@@ -3,7 +3,7 @@ import Rating from '../components/Rating';
 import '../styles/index.css';
 
 export default {
-  title: 'Example/Rating',
+  title: 'Components/Rating',
   component: Rating,
 };
 

@@ -3,7 +3,7 @@ import HeroCounter from '../components/HeroCounter';
 import '../styles/index.css';
 
 export default {
-  title: 'Example/HeroCounter',
+  title: 'Components/HeroCounter',
   component: HeroCounter,
 };
 

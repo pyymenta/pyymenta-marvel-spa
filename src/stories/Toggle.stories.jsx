@@ -3,7 +3,7 @@ import Toggle from '../components/Toggle';
 import '../styles/index.css';
 
 export default {
-  title: 'Example/Toggle',
+  title: 'Components/Toggle',
   component: Toggle,
 };
 
