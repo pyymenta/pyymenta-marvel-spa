@@ -1,0 +1,8 @@
+.rating-list {
+  display: inline;
+  list-style: none;
+}
+
+.rating-item {
+  display: inline;
+}
