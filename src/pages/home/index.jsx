@@ -11,8 +11,10 @@ import getCharacters from '../../services/getCharacters';
 
 const Home = () => {
   const [heroes, setHeroes] = useState([]);
+  const [heroesToShow, setHeroesToShow] = useState([]);
   const [heroesCount, setHeroesCount] = useState(0);
   const [heroesOrdering, setHeroesOrdering] = useState({ reverse: false });
+  const [searchDebounce, setSearchDebounce] = useState();
   const handleHeroesOrdering = () => {
     const alphabetical = (heroA, heroB) =>
       heroA.heroName === heroB.heroName
@@ -23,10 +25,27 @@ const Home = () => {
         ? 0
         : +(heroA.heroName < heroB.heroName) || -1;
 
-    setHeroes(
+    setHeroesToShow(
       heroesOrdering.reverse ? heroes.sort(reverse) : heroes.sort(alphabetical)
     );
     setHeroesOrdering({ reverse: !heroesOrdering.reverse });
+  };
+
+  const handleSearch = (event) => {
+    clearTimeout(searchDebounce);
+
+    const { value } = event.target || '';
+    const filterByPattern = () => {
+      if (!value.length) {
+        return setHeroesToShow(heroes);
+      }
+
+      return setHeroesToShow(
+        heroes.filter((hero) => hero.heroName.match(new RegExp(value, 'gi')))
+      );
+    };
+
+    setSearchDebounce(setTimeout(filterByPattern, 500));
   };
 
   useEffect(() => {
@@ -41,6 +60,7 @@ const Home = () => {
 
         setHeroesCount(res.data.count);
         setHeroes(characters);
+        setHeroesToShow(characters);
       })
       .catch(() => []);
   }, []);
@@ -56,7 +76,7 @@ const Home = () => {
       </Header>
 
       <div className='searchbar-wrapper'>
-        <SearchInput searchType='brand' />
+        <SearchInput searchType='brand' onSearchInput={handleSearch} />
       </div>
 
       <div className='actions-wrapper'>
@@ -77,7 +97,7 @@ const Home = () => {
       </div>
 
       <section className='heroes-wrapper'>
-        {heroes.map((hero) => (
+        {heroesToShow.map((hero) => (
           <div className='hero-item-wrapper'>
             <HeroItem {...hero} />
           </div>
