@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './pages/home';
-import HeroDetails from './pages/hero-details';
+import Hero from './pages/hero';
 
 const Navbar = () => (
   <nav>
@@ -10,7 +10,7 @@ const Navbar = () => (
         <Link to='/'>Home</Link>
       </li>
       <li>
-        <Link to='/hero-details'>Hero Details</Link>
+        <Link to='/hero'>Hero Details</Link>
       </li>
     </ul>
   </nav>
@@ -23,8 +23,8 @@ export default function App() {
         <Navbar />
 
         <Switch>
-          <Route path='/hero-details'>
-            <HeroDetails />
+          <Route path='/hero'>
+            <Hero />
           </Route>
           <Route path='/'>
             <Home />

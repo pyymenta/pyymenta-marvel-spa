@@ -1,0 +1,27 @@
+.hero-details-page {
+  background: var(--color-light);
+}
+
+.hero-details-header {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+
+.hero-details-header .search-wrapper {
+  margin-left: 60px;
+  margin-top: 14px;
+}
+
+.last-releases {
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 24px;
+}
+
+.last-releases__title {
+  color: var(--color-typo-strong);
+  font-size: 24px;
+  font-weight: 600;
+}
