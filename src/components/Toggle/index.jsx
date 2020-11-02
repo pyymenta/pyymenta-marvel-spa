@@ -8,7 +8,7 @@ const Toggle = ({ isActive }) => {
   return (
     <label htmlFor='toggle' className='toggle-wrapper'>
       <input
-        onClick={() => setActive(!active)}
+        onChange={() => setActive(!active)}
         className='toggle'
         type='checkbox'
         name='toggle'
