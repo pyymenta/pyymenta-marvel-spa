@@ -12,6 +12,22 @@ import getCharacters from '../../services/getCharacters';
 const Home = () => {
   const [heroes, setHeroes] = useState([]);
   const [heroesCount, setHeroesCount] = useState(0);
+  const [heroesOrdering, setHeroesOrdering] = useState({ reverse: false });
+  const handleHeroesOrdering = () => {
+    const alphabetical = (heroA, heroB) =>
+      heroA.heroName === heroB.heroName
+        ? 0
+        : +(heroA.heroName > heroB.heroName) || -1;
+    const reverse = (heroA, heroB) =>
+      heroA.heroName === heroB.heroName
+        ? 0
+        : +(heroA.heroName < heroB.heroName) || -1;
+
+    setHeroes(
+      heroesOrdering.reverse ? heroes.sort(reverse) : heroes.sort(alphabetical)
+    );
+    setHeroesOrdering({ reverse: !heroesOrdering.reverse });
+  };
 
   useEffect(() => {
     getCharacters()
@@ -48,7 +64,11 @@ const Home = () => {
           <HeroCounter heroCount={heroesCount} />
         </div>
         <div className='order-action-wrapper'>
-          <OrderAction type='hero' text='Ordenar por nome - A/Z' />
+          <OrderAction
+            type='hero'
+            handleAction={handleHeroesOrdering}
+            text='Ordenar por nome - A/Z'
+          />
           <div className='starred-wrapper'>
             <Toggle />
             <OrderAction type='heart' text='Somente favoritos' />
