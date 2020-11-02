@@ -1,27 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Hero from './pages/hero';
-
-const Navbar = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link to='/'>Home</Link>
-      </li>
-      <li>
-        <Link to='/hero'>Hero Details</Link>
-      </li>
-    </ul>
-  </nav>
-);
 
 export default function App() {
   return (
     <Router>
       <div>
-        <Navbar />
-
         <Switch>
           <Route path='/hero'>
             <Hero />
