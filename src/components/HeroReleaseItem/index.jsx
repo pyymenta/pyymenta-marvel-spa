@@ -7,7 +7,7 @@ const HeroItem = ({ heroImage, heroName }) => {
     <div className='hero--release-item'>
       <img className='hero--release-item__image' src={heroImage} alt={heroName} />
       <div className='hero--release-item__info-wrapper'>
-        <span className='hero--release-item__name'>${heroName}</span>
+        <span className='hero--release-item__name'>{heroName}</span>
       </div>
     </div>
   );

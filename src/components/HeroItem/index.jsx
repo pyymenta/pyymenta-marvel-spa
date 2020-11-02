@@ -8,7 +8,7 @@ const HeroItem = ({ heroImage, heroName, isFavorite }) => {
     <div className='hero-item'>
       <img className='hero-item__image' src={heroImage} alt={heroName} />
       <div className='hero-item__info-wrapper'>
-        <span className='hero-item__name'>${heroName}</span>
+        <span className='hero-item__name'>{heroName}</span>
         <Favorite isFavorite={isFavorite} />
       </div>
     </div>
