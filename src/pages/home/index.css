@@ -33,7 +33,8 @@ h2 {
 }
 
 .starred-wrapper {
-  display: flex;
+  display: inline-flex;
+  gap: 24px;
 }
 
 .hero-count-wrapper {
