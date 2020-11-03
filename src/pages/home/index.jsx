@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
-import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import SearchInput from '../../components/SearchInput';
 import HeroCounter from '../../components/HeroCounter';
 import OrderAction from '../../components/OrderAction';
 import Toggle from '../../components/Toggle';
 import HeroItem from '../../components/HeroItem';
-import getCharacters from '../../services/getCharacters';
+import { getCharacters } from '../../services/characters';
 
 const Home = () => {
   const [heroes, setHeroes] = useState([]);
@@ -103,8 +102,6 @@ const Home = () => {
           </div>
         ))}
       </section>
-
-      <Footer />
     </main>
   );
 };

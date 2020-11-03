@@ -1,5 +1,6 @@
 .home {
   width: 100%;
+  padding: 0 1.25%;
 }
 
 h1,
@@ -23,7 +24,7 @@ h2 {
 
 .searchbar-wrapper {
   margin: 0 auto;
-  width: 90%;
+  width: 60%;
 }
 
 .actions-wrapper {
