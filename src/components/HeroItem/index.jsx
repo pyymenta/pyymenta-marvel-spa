@@ -5,12 +5,14 @@ import './index.css';
 
 const HeroItem = ({ heroId, heroImage, heroName, isFavorite }) => {
   return (
-    <div className={`hero-item ${heroId}`}>
-      <img className='hero-item__image' src={heroImage} alt={heroName} />
-      <div className='hero-item__info-wrapper'>
-        <span className='hero-item__name'>{heroName}</span>
-        <Favorite isFavorite={isFavorite} />
-      </div>
+    <div className='hero-item'>
+      <a className='hero-item-link' href={`/hero/${heroId}`}>
+        <img className='hero-item__image' src={heroImage} alt={heroName} />
+        <div className='hero-item__info-wrapper'>
+          <span className='hero-item__name'>{heroName}</span>
+          <Favorite isFavorite={isFavorite} />
+        </div>
+      </a>
     </div>
   );
 };

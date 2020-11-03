@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+.hero-item-link {
+  text-decoration: none;
+}
+
 .hero-item__image {
   border-bottom: 5px solid var(--color-primary);
   width: 100%;
