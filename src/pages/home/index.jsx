@@ -97,7 +97,7 @@ const Home = () => {
 
       <section className='heroes-wrapper'>
         {heroesToShow.map((hero) => (
-          <div className='hero-item-wrapper'>
+          <div key={hero.heroId} className='hero-item-wrapper'>
             <HeroItem {...hero} />
           </div>
         ))}
