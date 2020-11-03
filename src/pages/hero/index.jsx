@@ -32,6 +32,7 @@ const Hero = () => {
           isFavorite: false,
         }))[0] || {};
       const comics = comicsResult.data.results.map((comic) => ({
+        id: comic.id,
         heroName: comic.title,
         heroImage: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
         modifiedDate: new Date(
@@ -47,7 +48,7 @@ const Hero = () => {
     };
 
     fetchData(id);
-  }, []);
+  }, [id]);
 
   const redirectToHome = () => {
     if (!history) {
@@ -67,7 +68,7 @@ const Hero = () => {
         <span className='last-releases__title'>Últimos lançamentos</span>
         <div className='releases-wrapper'>
           {heroComics.map((heroComic) => (
-            <HeroReleaseItem {...heroComic} />
+            <HeroReleaseItem key={heroComic.id} {...heroComic} />
           ))}
         </div>
       </div>
