@@ -1,5 +1,6 @@
 .hero-details-page {
   background: var(--color-light);
+  padding: 0 1.25%;
 }
 
 .hero-details-header {
@@ -13,11 +14,16 @@
   margin-top: 14px;
 }
 
-.last-releases {
+.hero-details-page .hero-details {
+  margin: 60px 0;
+}
+
+.releases-wrapper {
   display: inline-flex;
   flex-wrap: wrap;
-  width: 100%;
   gap: 24px;
+  margin: 36px 0;
+  width: 100%;
 }
 
 .last-releases__title {
