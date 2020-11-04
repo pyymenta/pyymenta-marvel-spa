@@ -40,7 +40,8 @@
       "prettier"
     ],
     "rules": {
-      "react/jsx-props-no-spreading": "off"
+      "react/jsx-props-no-spreading": "off",
+      "no-alert": "off"
     }
   },
   "browserslist": {

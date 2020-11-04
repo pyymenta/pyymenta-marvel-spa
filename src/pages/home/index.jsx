@@ -60,7 +60,6 @@ const Home = () => {
     );
 
     if (!limitAvailable) {
-      // eslint-disable-next-line no-alert
       alert('Limite de favoritos atingido!');
     }
 
