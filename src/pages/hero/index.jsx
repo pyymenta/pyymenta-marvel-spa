@@ -64,7 +64,6 @@ const Hero = () => {
     setHeroData({ ...heroData, isFavorite: isFavorited });
 
     if (!limitAvailable) {
-      // eslint-disable-next-line no-alert
       alert('Limite de favoritos atingido!');
     }
 
