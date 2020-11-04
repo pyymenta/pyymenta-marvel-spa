@@ -1,5 +1,7 @@
 # Marvel API SPA
 
+[![YourActionName Actions Status](https://github.com/pyymenta/pyymenta-marvel-spa/workflows/react-app-ci/badge.svg)](https://github.com/pyymenta/pyymenta-marvel-spa/actions)
+
 A simple Single Page Application made with React, using the [Official Marvel API](https://developer.marvel.com).
 
 ## Setup
