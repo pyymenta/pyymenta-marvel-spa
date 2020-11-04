@@ -27,7 +27,9 @@ const Home = () => {
         : +(heroA.heroName < heroB.heroName) || -1;
 
     setHeroesToShow(
-      heroesOrdering.reverse ? heroes.sort(reverse) : heroes.sort(alphabetical)
+      heroesOrdering.reverse
+        ? heroesToShow.sort(reverse)
+        : heroesToShow.sort(alphabetical)
     );
     setHeroesOrdering({ reverse: !heroesOrdering.reverse });
   };
@@ -42,7 +44,7 @@ const Home = () => {
       }
 
       return setHeroesToShow(
-        heroes.filter((hero) => hero.heroName.match(new RegExp(value, 'gi')))
+        heroesToShow.filter((hero) => hero.heroName.match(new RegExp(value, 'gi')))
       );
     };
 
