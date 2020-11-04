@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const Toggle = ({ isActive }) => {
+const Toggle = ({ isActive, handleToggle }) => {
   const [active, setActive] = useState(isActive);
+
+  const handleChangeEvent = () => {
+    setActive(!active);
+
+    handleToggle(!active);
+  };
 
   return (
     <label htmlFor='toggle' className='toggle-wrapper'>
       <input
-        onChange={() => setActive(!active)}
+        onChange={handleChangeEvent}
         className='toggle'
         type='checkbox'
         name='toggle'
@@ -22,10 +28,12 @@ const Toggle = ({ isActive }) => {
 
 Toggle.defaultProps = {
   isActive: false,
+  handleToggle: () => {},
 };
 
 Toggle.propTypes = {
   isActive: PropTypes.bool,
+  handleToggle: PropTypes.func,
 };
 
 export default Toggle;
