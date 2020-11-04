@@ -9,12 +9,14 @@ import './index.css';
 const HeroDetails = ({
   isFavorite,
   heroName,
+  heroId,
   heroDescription,
   comicsBooks,
   movies,
   ratingValue,
   lastComicDate,
   heroImage,
+  handleFavoritePersistence,
 }) => {
   return (
     <section className='hero-details'>
@@ -22,7 +24,11 @@ const HeroDetails = ({
         <div className='hero-info'>
           <div className='hero-info__row'>
             <span className='hero-info__name'>{heroName}</span>
-            <Favorite isFavorite={isFavorite} />
+            <Favorite
+              itemId={heroId}
+              handleFavoritePersistence={handleFavoritePersistence}
+              isFavorite={isFavorite}
+            />
           </div>
           <div className='hero-info__row'>
             <div className='hero-info__description'>{heroDescription}</div>
@@ -68,23 +74,27 @@ const HeroDetails = ({
 HeroDetails.defaultProps = {
   isFavorite: false,
   heroName: '',
+  heroId: 0,
   heroDescription: '',
   comicsBooks: 0,
   movies: 0,
   ratingValue: 5,
   lastComicDate: '',
   heroImage: '',
+  handleFavoritePersistence: () => true,
 };
 
 HeroDetails.propTypes = {
   isFavorite: PropTypes.bool,
   heroName: PropTypes.string,
+  heroId: PropTypes.number,
   heroDescription: PropTypes.string,
   comicsBooks: PropTypes.number,
   movies: PropTypes.number,
   ratingValue: PropTypes.number,
   lastComicDate: PropTypes.string,
   heroImage: PropTypes.string,
+  handleFavoritePersistence: PropTypes.func,
 };
 
 export default HeroDetails;
