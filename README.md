@@ -4,6 +4,12 @@
 
 A simple Single Page Application made with React, using the [Official Marvel API](https://developer.marvel.com).
 
+## Demo
+
+![Marvel App Demo](https://user-images.githubusercontent.com/13206817/98174810-379f0300-1ed4-11eb-9f53-90c56fab6566.gif)
+
+You can try it by yourself [here](<https://trusting-einstein-34ff09.netlify.app>)
+
 ## Setup
 
 ### Pre requirements
