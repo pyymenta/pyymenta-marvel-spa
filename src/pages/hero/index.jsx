@@ -36,14 +36,14 @@ const Hero = () => {
         heroName: comic.title,
         heroImage: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
         modifiedDate: new Date(
-          comic.dates.find((date) => date.type === 'onsaleDate').date
+          comic.dates?.find((date) => date.type === 'onsaleDate')?.date
         ).toString(),
       }));
 
       setHeroComics(comics);
       setHeroData({
         ...hero,
-        lastComicDate: comics[comics.length - 1].modifiedDate,
+        lastComicDate: comics[comics.length - 1]?.modifiedDate,
       });
     };
 
