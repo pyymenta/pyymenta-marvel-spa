@@ -15,6 +15,7 @@ const Home = () => {
   const [heroesCount, setHeroesCount] = useState(0);
   const [heroesOrdering, setHeroesOrdering] = useState({ reverse: false });
   const [searchDebounce, setSearchDebounce] = useState();
+
   const handleHeroesOrdering = () => {
     const alphabetical = (heroA, heroB) =>
       heroA.heroName === heroB.heroName
@@ -50,6 +51,11 @@ const Home = () => {
 
   const handleFavoritePersistence = (heroId, isFavorited) => {
     const limitAvailable = isFavorited ? add(heroId) : remove(heroId);
+    setHeroes(
+      heroes.map((hero) =>
+        hero.heroId === heroId ? { ...hero, isFavorite: isFavorited } : hero
+      )
+    );
 
     if (!limitAvailable) {
       // eslint-disable-next-line no-alert
@@ -57,6 +63,14 @@ const Home = () => {
     }
 
     return limitAvailable;
+  };
+
+  const handleFavoriteFilter = (active) => {
+    const heroesFiltered = active
+      ? heroesToShow.filter((hero) => isFavorite(hero.heroId))
+      : [...heroes];
+
+    setHeroesToShow(heroesFiltered);
   };
 
   useEffect(() => {
@@ -101,7 +115,7 @@ const Home = () => {
             text='Ordenar por nome - A/Z'
           />
           <div className='starred-wrapper'>
-            <Toggle />
+            <Toggle handleToggle={handleFavoriteFilter} />
             <OrderAction type='heart' text='Somente favoritos' />
           </div>
         </div>
