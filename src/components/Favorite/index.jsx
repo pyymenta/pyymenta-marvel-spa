@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 import fullHeart from './full-heart.svg';
@@ -6,6 +6,10 @@ import emptyHeart from './empty-heart.svg';
 
 const Favorite = ({ isFavorite, handleFavoritePersistence, itemId }) => {
   const [favorite, setFavorite] = useState(isFavorite);
+
+  useEffect(() => {
+    setFavorite(isFavorite);
+  }, [isFavorite]);
 
   const handleFavorite = () => {
     const shouldSetFavorite = handleFavoritePersistence(itemId, !favorite);
