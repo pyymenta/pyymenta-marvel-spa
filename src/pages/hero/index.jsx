@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { getCharacterById } from '../../services/characters';
 import getComicsByCharacterId from '../../services/comics';
+import { isFavorite, add, remove } from '../../services/favorite';
 import Header from '../../components/Header';
 import SearchInput from '../../components/SearchInput';
 import HeroDetails from '../../components/HeroDetails';
@@ -29,7 +30,7 @@ const Hero = () => {
           ratingValue: 5,
           heroImage: `${character.thumbnail.path}.${character.thumbnail.extension}`,
           lastComicDate: character.modified,
-          isFavorite: false,
+          isFavorite: isFavorite(character.id),
         }))[0] || {};
       const comics = comicsResult.data.results.map((comic) => ({
         id: comic.id,
@@ -58,12 +59,27 @@ const Hero = () => {
     history.replace('/');
   };
 
+  const handleFavoritePersistence = (heroId, isFavorited) => {
+    const limitAvailable = isFavorited ? add(heroId) : remove(heroId);
+    setHeroData({ ...heroData, isFavorite: isFavorited });
+
+    if (!limitAvailable) {
+      // eslint-disable-next-line no-alert
+      alert('Limite de favoritos atingido!');
+    }
+
+    return limitAvailable;
+  };
+
   return (
     <main className={`hero-details-page ${id}`} role='main'>
       <Header classList='hero-details-header' logoImageWidth={200}>
         <SearchInput onSearchInput={redirectToHome} />
       </Header>
-      <HeroDetails {...heroData} />
+      <HeroDetails
+        {...heroData}
+        handleFavoritePersistence={handleFavoritePersistence}
+      />
       <div className='last-releases'>
         <span className='last-releases__title'>Últimos lançamentos</span>
         <div className='releases-wrapper'>
