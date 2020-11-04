@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Favorite component should match the snapshot 1`] = `"<img class=\\"favorite\\" src=\\"empty-heart.svg\\" alt=\\"Favoritar ou desfavoritar herói\\" role=\\"presentation\\"/>"`;
