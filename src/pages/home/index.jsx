@@ -7,6 +7,7 @@ import OrderAction from '../../components/OrderAction';
 import Toggle from '../../components/Toggle';
 import HeroItem from '../../components/HeroItem';
 import { getCharacters } from '../../services/characters';
+import { isFavorite, add, remove } from '../../services/favorite';
 
 const Home = () => {
   const [heroes, setHeroes] = useState([]);
@@ -47,6 +48,17 @@ const Home = () => {
     setSearchDebounce(setTimeout(filterByPattern, 500));
   };
 
+  const handleFavoritePersistence = (heroId, isFavorited) => {
+    const limitAvailable = isFavorited ? add(heroId) : remove(heroId);
+
+    if (!limitAvailable) {
+      // eslint-disable-next-line no-alert
+      alert('Limite de favoritos atingido!');
+    }
+
+    return limitAvailable;
+  };
+
   useEffect(() => {
     getCharacters()
       .then((res) => {
@@ -54,7 +66,7 @@ const Home = () => {
           heroId: character.id,
           heroName: character.name,
           heroImage: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-          isFavorite: false,
+          isFavorite: isFavorite(character.id),
         }));
 
         setHeroesCount(res.data.count);
@@ -98,7 +110,10 @@ const Home = () => {
       <section className='heroes-wrapper'>
         {heroesToShow.map((hero) => (
           <div key={hero.heroId} className='hero-item-wrapper'>
-            <HeroItem {...hero} />
+            <HeroItem
+              {...hero}
+              handleFavoritePersistence={handleFavoritePersistence}
+            />
           </div>
         ))}
       </section>
