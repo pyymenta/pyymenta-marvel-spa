@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import Header from '../../components/Header';
 import SearchInput from '../../components/SearchInput';
@@ -6,15 +6,20 @@ import HeroCounter from '../../components/HeroCounter';
 import OrderAction from '../../components/OrderAction';
 import Toggle from '../../components/Toggle';
 import HeroItem from '../../components/HeroItem';
-import { getCharacters } from '../../services/characters';
 import { isFavorite, add, remove } from '../../services/favorite';
+import useCharacters from '../../hooks/useCharacters';
 
 const Home = () => {
-  const [heroes, setHeroes] = useState([]);
+  const { status, data, error } = useCharacters();
   const [heroesToShow, setHeroesToShow] = useState([]);
-  const [heroesCount, setHeroesCount] = useState(0);
   const [heroesOrdering, setHeroesOrdering] = useState({ reverse: false });
   const [searchDebounce, setSearchDebounce] = useState();
+
+  useEffect(() => {
+    if (status === 'FETCHED') {
+      setHeroesToShow(data.characters);
+    }
+  }, [status, data]);
 
   const handleHeroesOrdering = () => {
     const alphabetical = (heroA, heroB) =>
@@ -26,10 +31,12 @@ const Home = () => {
         ? 0
         : +(heroA.heroName < heroB.heroName) || -1;
 
+    const { characters } = data;
+
     setHeroesToShow(
       heroesOrdering.reverse
-        ? heroesToShow.sort(reverse)
-        : heroesToShow.sort(alphabetical)
+        ? characters.sort(reverse)
+        : characters.sort(alphabetical)
     );
     setHeroesOrdering({ reverse: !heroesOrdering.reverse });
   };
@@ -38,13 +45,15 @@ const Home = () => {
     clearTimeout(searchDebounce);
 
     const { value } = event.target || '';
+    const { characters } = data;
+
     const filterByPattern = () => {
       if (!value.length) {
-        return setHeroesToShow(heroes);
+        return setHeroesToShow(characters);
       }
 
       return setHeroesToShow(
-        heroesToShow.filter((hero) => hero.heroName.match(new RegExp(value, 'gi')))
+        characters.filter((hero) => hero.heroName.match(new RegExp(value, 'gi')))
       );
     };
 
@@ -53,8 +62,10 @@ const Home = () => {
 
   const handleFavoritePersistence = (heroId, isFavorited) => {
     const limitAvailable = isFavorited ? add(heroId) : remove(heroId);
-    setHeroes(
-      heroes.map((hero) =>
+    const { characters } = data;
+
+    setHeroesToShow(
+      characters.map((hero) =>
         hero.heroId === heroId ? { ...hero, isFavorite: isFavorited } : hero
       )
     );
@@ -67,29 +78,13 @@ const Home = () => {
   };
 
   const handleFavoriteFilter = (active) => {
+    const { characters } = data;
     const heroesFiltered = active
       ? heroesToShow.filter((hero) => isFavorite(hero.heroId))
-      : [...heroes];
+      : [...characters];
 
     setHeroesToShow(heroesFiltered);
   };
-
-  useEffect(() => {
-    getCharacters()
-      .then((res) => {
-        const characters = res.data.results.map((character) => ({
-          heroId: character.id,
-          heroName: character.name,
-          heroImage: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-          isFavorite: isFavorite(character.id),
-        }));
-
-        setHeroesCount(res.data.count);
-        setHeroes(characters);
-        setHeroesToShow(characters);
-      })
-      .catch(() => []);
-  }, []);
 
   return (
     <main className='home' role='main'>
@@ -107,7 +102,7 @@ const Home = () => {
 
       <div className='actions-wrapper'>
         <div className='hero-count-wrapper'>
-          <HeroCounter heroCount={heroesCount} />
+          <HeroCounter heroCount={data.heroesCount} />
         </div>
         <div className='order-action-wrapper'>
           <OrderAction
@@ -123,14 +118,20 @@ const Home = () => {
       </div>
 
       <section className='heroes-wrapper'>
-        {heroesToShow.map((hero) => (
-          <div key={hero.heroId} className='hero-item-wrapper'>
-            <HeroItem
-              {...hero}
-              handleFavoritePersistence={handleFavoritePersistence}
-            />
-          </div>
-        ))}
+        {status === null && (
+          <div> Lets get started by searching for an article! </div>
+        )}
+        {status === 'ERROR' && <div>{error}</div>}
+        {status === 'FETCHING' && <div className='loading'>Carregando Heróis</div>}
+        {status === 'FETCHED' &&
+          heroesToShow.map((hero) => (
+            <div key={hero.heroId} className='hero-item-wrapper'>
+              <HeroItem
+                {...hero}
+                handleFavoritePersistence={handleFavoritePersistence}
+              />
+            </div>
+          ))}
       </section>
     </main>
   );
